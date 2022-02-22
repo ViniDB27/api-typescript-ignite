@@ -1,3 +1,3 @@
 module.exports = {
-  singleQupte: false,
+  singleQupte: true,
 }
