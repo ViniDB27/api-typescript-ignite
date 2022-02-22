@@ -1,13 +1,23 @@
-import { Specification } from "../model/Specification";
+import { Specification } from "../../model/Specification";
 import {
   ISpacificationRepository,
   ICreateSpacificationDTO,
-} from "./ISpecificationsRepository";
+} from "../ISpecificationsRepository";
 
 class SpacificationRepository implements ISpacificationRepository {
   private specifications: Specification[];
 
-  constructor() {
+  private static INSTANCE: SpacificationRepository;
+
+  public static getInstance(): SpacificationRepository {
+    if (!SpacificationRepository.INSTANCE) {
+      SpacificationRepository.INSTANCE = new SpacificationRepository();
+    }
+
+    return SpacificationRepository.INSTANCE;
+  }
+
+  private constructor() {
     this.specifications = [];
   }
 

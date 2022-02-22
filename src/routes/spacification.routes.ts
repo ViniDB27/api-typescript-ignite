@@ -1,20 +1,9 @@
 import { Router } from "express";
 
-import { SpacificationRepository } from "../modules/cars/repositories/SpecificationsRepository";
-import { CreateSpecificationService } from "../modules/cars/service/CreateSpecificationService";
+import { createSpecificationController } from "../modules/cars/useCases/createSpecification";
 
 const spacificationRoutes = Router();
-const spacificationRepository = new SpacificationRepository();
 
-spacificationRoutes.post("/", (request, response) => {
-  const createSpecificationService = new CreateSpecificationService(
-    spacificationRepository
-  );
-  const { name, description } = request.body;
-
-  createSpecificationService.execut({ name, description });
-
-  return response.status(201).send();
-});
+spacificationRoutes.post("/", createSpecificationController.handle);
 
 export { spacificationRoutes };
