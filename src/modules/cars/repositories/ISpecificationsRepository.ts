@@ -6,8 +6,8 @@ interface ICreateSpacificationDTO {
 }
 
 interface ISpacificationRepository {
-  create(data: ICreateSpacificationDTO): void;
-  findByName(name: string): Specification;
+  create(data: ICreateSpacificationDTO): Promise<void>;
+  findByName(name: string): Promise<Specification>;
 }
 
 export { ISpacificationRepository, ICreateSpacificationDTO };
