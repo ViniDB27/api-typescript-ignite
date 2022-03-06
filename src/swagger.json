@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "RentelX Documentation",
+    "title": "RentX Documentation",
     "description": "This is an Api Rent",
     "version": "1.0.0",
     "contact": {
@@ -11,9 +11,7 @@
   "paths": {
     "/categories": {
       "post": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "summary": "Crate a category",
         "description": "Create a new category",
         "requestBody": {
@@ -47,9 +45,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "summary": "List all categories",
         "description": "List all categories",
         "responses": {
@@ -74,6 +70,73 @@
               }
             }
           }
+        }
+      }
+    },
+    "/categories/import": {
+      "post": {
+        "tags": ["Category"],
+        "summary": "Import category",
+        "description": "Import category",
+        "requestBody": {
+          "content": {
+            "multpart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/spacifications": {
+      "post": {
+        "tags": ["Spacifications"],
+        "summary": "Crate a spacification",
+        "description": "create a new spacification",
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "$ref": "#/definitions/Spacification"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Specification arleady exist"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Spacification": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
         }
       }
     }

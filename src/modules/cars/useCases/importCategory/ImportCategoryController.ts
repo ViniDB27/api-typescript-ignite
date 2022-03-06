@@ -10,7 +10,7 @@ class ImportCategoryController {
 
     await importCategoryUseCase.excute(file);
 
-    return response.send();
+    return response.status(201).send();
   }
 }
 
