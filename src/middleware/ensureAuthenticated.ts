@@ -27,9 +27,13 @@ export async function ensureAuthenticated(
 
     const usersRepository = new UserRepository();
 
-    const user = usersRepository.findById(user_id);
+    const user = await usersRepository.findById(user_id);
 
     if (!user) throw new AppError("User not exist", 401);
+
+    request.user = {
+      id: user_id,
+    };
 
     next();
   } catch {
